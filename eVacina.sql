@@ -24,8 +24,8 @@ CREATE TABLE CIDADAO(
 	
 CREATE TABLE PRODUTORA(
 	Cod_prod INT PRIMARY KEY AUTO_INCREMENT,
-	NomeComercial VARCHAR(70) UNIQUE NOT NULL,#Razão Social da empresa
-	NomeFantasia VARCHAR(70) NOT NULL,#Nome popular da empresa
+	Nome_comercial VARCHAR(70) UNIQUE NOT NULL,#Razão Social da empresa
+	Nome_fantasia VARCHAR(70) NOT NULL,#Nome popular da empresa
 	CNPJ VARCHAR(14) UNIQUE NOT NULL,
 	Cod_end INT #Chave estrangeira que faz relação com a tabela endereço
 );
@@ -51,8 +51,8 @@ CREATE TABLE LOTE(
 
 CREATE TABLE FRASCO(
 	Cod_frasco VARCHAR(11) PRIMARY KEY, #Não vai ser auto increment, pois vai ser código de lote
-	DosesDisponiveis SMALLINT, #Utiliza o smallint para diminuir espaço na memória, já que será um valor baixo
-	DataVencimento DATE NOT NULL,
+	Doses_disponiveis SMALLINT, #Utiliza o smallint para diminuir espaço na memória, já que será um valor baixo
+	Data_vencimento DATE NOT NULL,
 	Cod_vac INT NOT NULL #Chave estrangeira que faz relação com a tabela Vacina
 );
 
@@ -90,7 +90,7 @@ CREATE TABLE CONTATO_PROD(
 
 CREATE TABLE VACINACAO(
 	Cod_vcao INT PRIMARY KEY AUTO_INCREMENT,
-	DataAplicacao DATE NOT NULL,
+	Data_aplicacao DATE NOT NULL,
 	Cod_frasco INT NOT NULL, #Chave estrangeira que faz relação com a tabela Frasco
 	Cod_posto INT NOT NULL, #Chave estrangeira que faz relação com a tabela Posto
 	Cod_func INT NOT NULL, #Chave estrangeira que faz relação com a tabela Funcionario
