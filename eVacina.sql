@@ -19,7 +19,7 @@ CREATE TABLE CIDADAO(
 	Cod_cid INT PRIMARY KEY AUTO_INCREMENT,
 	Nome VARCHAR(70) NOT NULL,
 	Sexo ENUM('F', 'M') NOT NULL,
-	Idade INT NOT NULL,
+	Data_nascimento DATE NOT NULL,
 	CPF VARCHAR(11) UNIQUE NOT NULL, #Utilizamos o unique, pois somente pode haver um cadastro de CPF e RG
 	RG VARCHAR(9) UNIQUE NOT NULL,
 	Cod_end INT #Será a chave estrangeira que vai fazer relação com a tabela endereço
