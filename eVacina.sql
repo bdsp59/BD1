@@ -77,6 +77,7 @@ CREATE TABLE CONTATO_CIDADAO(
 	Cod_cont_cid INT PRIMARY KEY AUTO_INCREMENT,
 	Cod_cid INT NOT NULL,
 	Cod_cont INT NOT NULL
+<<<<<<< HEAD
 );
 
 CREATE TABLE CONTATO_POSTO(
@@ -85,6 +86,16 @@ CREATE TABLE CONTATO_POSTO(
 	Cod_cont INT NOT NULL
 );
 
+=======
+);
+
+CREATE TABLE CONTATO_POSTO(
+	Cod_cont_posto INT PRIMARY KEY AUTO_INCREMENT,
+	Cod_posto INT NOT NULL,
+	Cod_cont INT NOT NULL
+);
+
+>>>>>>> 1afe53140673d7e81c248620e22011f5ea1fa3ff
 CREATE TABLE CONTATO_PROD(
 	Cod_cont_prod INT PRIMARY KEY AUTO_INCREMENT,
 	Cod_prod INT NOT NULL,
@@ -94,7 +105,11 @@ CREATE TABLE CONTATO_PROD(
 CREATE TABLE VACINACAO(
 	Cod_vcao INT PRIMARY KEY AUTO_INCREMENT,
 	Data_aplicacao DATE NOT NULL,
+<<<<<<< HEAD
 	Cod_frasco VARCHAR(11) NOT NULL, #Chave estrangeira que faz relação com a tabela Frasco
+=======
+	Cod_frasco INT NOT NULL, #Chave estrangeira que faz relação com a tabela Frasco
+>>>>>>> 1afe53140673d7e81c248620e22011f5ea1fa3ff
 	Cod_posto INT NOT NULL, #Chave estrangeira que faz relação com a tabela Posto
 	Cod_func INT NOT NULL, #Chave estrangeira que faz relação com a tabela Funcionario
 	Cod_cid INT NOT NULL #Chave estrangeira que faz relação com a tabela Cidadão
@@ -127,6 +142,7 @@ ALTER TABLE VACINACAO ADD CONSTRAINT fk_Vacinacao_Frasco FOREIGN KEY(Cod_frasco)
 ALTER TABLE VACINACAO ADD CONSTRAINT fk_Vacinacao_Posto FOREIGN KEY(Cod_posto) REFERENCES POSTO(Cod_posto);
 ALTER TABLE VACINACAO ADD CONSTRAINT fk_Vacinacao_Funcionario FOREIGN KEY(Cod_func) REFERENCES FUNCIONARIO(Cod_func);
 ALTER TABLE VACINACAO ADD CONSTRAINT fk_Vacinacao_Cidadao FOREIGN KEY(Cod_cid) REFERENCES CIDADAO(Cod_cid);
+<<<<<<< HEAD
 #Tabela Contato_Cidadao
 ALTER TABLE CONTATO_CIDADAO ADD CONSTRAINT fk_Contato_Cidadao_Cidadao FOREIGN KEY(Cod_cid) REFERENCES CIDADAO(Cod_cid);
 ALTER TABLE CONTATO_CIDADAO ADD CONSTRAINT fk_Contato_Cidadao_Contato FOREIGN KEY(Cod_cont) REFERENCES CONTATO(Cod_cont);
@@ -171,3 +187,5 @@ INSERT INTO PRODUTORA VALUES (NULL, "LABORATORIOS PFIZER LTDA", "Pfizer", "46070
 INSERT INTO PRODUTORA VALUES (NULL, "FUNDACAO OSWALDO CRUZ", "Fiocruz", "33781055000135", 15);
 INSERT INTO PRODUTORA VALUES (NULL, "FUNDACAO BUTANTAN", "Butantan", "61189445000156", 13);
 INSERT INTO PRODUTORA VALUES (NULL, "GLAXOSMITHKLINE BRASIL LTDA", "GSK", "33247743003569", 14);
+=======
+>>>>>>> 1afe53140673d7e81c248620e22011f5ea1fa3ff
