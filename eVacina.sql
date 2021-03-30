@@ -20,43 +20,42 @@ CREATE TABLE CIDADAO(
 	Nome VARCHAR(70) NOT NULL,
 	Sexo ENUM('F', 'M') NOT NULL,
 	Data_nascimento DATE NOT NULL,
-	CPF VARCHAR(11) UNIQUE NOT NULL, #Utilizamos o unique, pois somente pode haver um cadastro de CPF e RG
+	CPF VARCHAR(11) UNIQUE NOT NULL,
 	RG VARCHAR(9) UNIQUE NOT NULL,
-	Cod_end INT #Será a chave estrangeira que vai fazer relação com a tabela endereço
+	Cod_end INT
 );
 	
 CREATE TABLE PRODUTORA(
 	Cod_prod INT PRIMARY KEY AUTO_INCREMENT,
-	Nome_comercial VARCHAR(70) UNIQUE NOT NULL,#Razão Social da empresa
-	Nome_fantasia VARCHAR(70) NOT NULL,#Nome popular da empresa
+	Nome_comercial VARCHAR(70) UNIQUE NOT NULL,
+	Nome_fantasia VARCHAR(70) NOT NULL,
 	CNPJ VARCHAR(14) UNIQUE NOT NULL,
-	Cod_end INT #Chave estrangeira que faz relação com a tabela endereço
-);
+	Cod_end INT
 
 CREATE TABLE POSTO(
 	Cod_posto INT PRIMARY KEY AUTO_INCREMENT,
 	Nome VARCHAR(100) NOT NULL,
-	Cod_end INT #Chave estrangeira que faz relação com a tabela endereço
+	Cod_end INT
 );
 
 CREATE TABLE FUNCIONARIO(
 	Cod_func INT PRIMARY KEY AUTO_INCREMENT,
 	Cargo VARCHAR(30) NOT NULL,
-	Cod_posto INT NOT NULL, #Chave estrangeira que faz relação com a tabela posto
-	Cod_cid INT NOT NULL #Chave estrangeira que faz relação com a tabela cidadao
+	Cod_posto INT NOT NULL,
+	Cod_cid INT NOT NULL
 );
 
 CREATE TABLE LOTE(
-	Cod_lote INT(11) PRIMARY KEY, #Não vai ser auto increment, pois vai ser um código de lote
+	Cod_lote INT(11) PRIMARY KEY,
 	Data_estoque DATE,
-	Cod_posto INT #Chave estrangeira que faz relação com a tabela posto
+	Cod_posto INT 
 );
 
 CREATE TABLE FRASCO(
-	Cod_frasco VARCHAR(11) PRIMARY KEY, #Não vai ser auto increment, pois vai ser código de lote
-	Doses_disponiveis SMALLINT, #Utiliza o smallint para diminuir espaço na memória, já que será um valor baixo
+	Cod_frasco VARCHAR(11) PRIMARY KEY,
+	Doses_disponiveis SMALLINT,
 	Data_vencimento DATE NOT NULL,
-	Cod_vac INT NOT NULL #Chave estrangeira que faz relação com a tabela Vacina
+	Cod_vac INT NOT NULL
 );
 
 CREATE TABLE VACINA(
@@ -90,10 +89,10 @@ CREATE TABLE CONTATO_PROD(
 CREATE TABLE VACINACAO(
 	Cod_vcao INT PRIMARY KEY AUTO_INCREMENT,
 	Data_aplicacao DATE NOT NULL,
-	Cod_frasco VARCHAR(11) NOT NULL, #Chave estrangeira que faz relação com a tabela Frasco
-	Cod_posto INT NOT NULL, #Chave estrangeira que faz relação com a tabela Posto
-	Cod_func INT NOT NULL, #Chave estrangeira que faz relação com a tabela Funcionario
-	Cod_cid INT NOT NULL #Chave estrangeira que faz relação com a tabela Cidadão
+	Cod_frasco VARCHAR(11) NOT NULL,
+	Cod_posto INT NOT NULL,
+	Cod_func INT NOT NULL,
+	Cod_cid INT NOT NULL
 );
 
 CREATE TABLE PRODUZ(
@@ -169,14 +168,14 @@ INSERT INTO ENDERECO VALUES (NULL, "Estrada dos Bandeirantes", "8464", NULL, "Ca
 INSERT INTO ENDERECO VALUES (NULL, "Avenida Brasil", "4365", NULL, "Manguinhos", "Rio de Janeiro", "RJ", "21040360");#Fiocruz
 
 #Cidadão -> (Código, Nome, Sexo, Idade, CPF, RG, FK_ENDERECO)
-INSERT INTO CIDADAO VALUES (NULL, "Bruno Proença", "M", 25, "06045842707", "263968182", 7);
-INSERT INTO CIDADAO VALUES (NULL, "Julio César", "M", 49, "19856960029", "118485672", 11);
-INSERT INTO CIDADAO VALUES (NULL, "Carla Maranhos", "F", 34, "27852441092", "192139058", 9);
-INSERT INTO CIDADAO VALUES (NULL, "Maria Pires", "F", 58, "44262987094", "390661818", 8);
-INSERT INTO CIDADAO VALUES (NULL, "Felipe Souza", "M", 18, "52997141060", "296278245", 10);
-INSERT INTO CIDADAO VALUES (NULL, "Luiz Silva", "M", 56, "79656455720", "419189105", 7);
-INSERT INTO CIDADAO VALUES (NULL, "Maria Torres", "F", 22, "49472198074", "134356391", 8);
-INSERT INTO CIDADAO VALUES (NULL, "Fernanda Lúcia", "F", 67, "62781723053", "172750799", 10);
+INSERT INTO CIDADAO VALUES (NULL, "Bruno Proença", "M", '22/04/1993', "06045842707", "263968182", 7);
+INSERT INTO CIDADAO VALUES (NULL, "Julio César", "M", '22/04/1994', "19856960029", "118485672", 11);
+INSERT INTO CIDADAO VALUES (NULL, "Carla Maranhos", "F", '22/04/1995', "27852441092", "192139058", 9);
+INSERT INTO CIDADAO VALUES (NULL, "Maria Pires", "F", '22/04/1996', "44262987094", "390661818", 8);
+INSERT INTO CIDADAO VALUES (NULL, "Felipe Souza", "M", '22/04/1997', "52997141060", "296278245", 10);
+INSERT INTO CIDADAO VALUES (NULL, "Luiz Silva", "M", '22/04/1999', "79656455720", "419189105", 7);
+INSERT INTO CIDADAO VALUES (NULL, "Maria Torres", "F", '22/04/1998', "49472198074", "134356391", 8);
+INSERT INTO CIDADAO VALUES (NULL, "Fernanda Lúcia", "F", '22/04/1992', "62781723053", "172750799", 10);
 
 #Produtora -> (Código, Nome_Comercial, Nome_Fantasia, CNPJ, FK_ENDERECO)
 INSERT INTO PRODUTORA VALUES (NULL, "LABORATORIOS PFIZER LTDA", "Pfizer", "46070868001998", 12);
