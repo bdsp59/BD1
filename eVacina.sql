@@ -63,8 +63,7 @@ CREATE TABLE VACINA(
 	Cod_vac INT PRIMARY KEY AUTO_INCREMENT,
 	Nome VARCHAR(30) NOT NULL UNIQUE,
 	Descricao VARCHAR(100) NOT NULL,
-	Obrigatoria BOOLEAN DEFAULT false,
-	Cod_prod INT NOT NULL
+	Obrigatoria BOOLEAN DEFAULT false
 );
 
 CREATE TABLE CONTATO(
@@ -92,10 +91,14 @@ CREATE TABLE VACINACAO(
 	Cod_vcao INT PRIMARY KEY AUTO_INCREMENT,
 	Data_aplicacao DATE NOT NULL,
 	Cod_frasco VARCHAR(11) NOT NULL, #Chave estrangeira que faz relação com a tabela Frasco
-	Cod_frasco INT NOT NULL, #Chave estrangeira que faz relação com a tabela Frasco
 	Cod_posto INT NOT NULL, #Chave estrangeira que faz relação com a tabela Posto
 	Cod_func INT NOT NULL, #Chave estrangeira que faz relação com a tabela Funcionario
 	Cod_cid INT NOT NULL #Chave estrangeira que faz relação com a tabela Cidadão
+);
+
+CREATE TABLE PRODUZ(
+	Cod_vac INT NOT NULL,
+	Cod_prod INT NOT NULL
 );
 
 #Vincular as chaves estrangeiras - Construção do nome da chave fk_TabelaComChave_TabelaDeReferencia
