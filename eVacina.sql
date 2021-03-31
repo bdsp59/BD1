@@ -245,13 +245,12 @@ INSERT INTO CONTATO_CIDADAO VALUES(8, 19);
 
 DELIMITER $
 
-CREATE PROCEDURE RECUPERAR_CODIGO(INOUT codigo INT)
+CREATE PROCEDURE RECUPERAR_CODIGO(INOUT codigo VARCHAR(8))
 BEGIN
   DECLARE identificador VARCHAR(2);
   DECLARE var1 INT;
   SET var1 = (SELECT COUNT(codigo) FROM FRASCO) + 1;
-  SET identificador = CONVERT(var1, CHAR(2));
-  SET	codigo = CAST(identificador as unsigned integer);
+  SET codigo = CONVERT(var1, CHAR(2));
 END
 $
 
@@ -265,7 +264,7 @@ FOR EACH ROW
 BEGIN
   SET @codigoFrasco = NEW.Cod_lote;
   CALL RECUPERAR_CODIGO(@codigoFrasco);
-  SET NEW.Cod_frasco = CONCAT(CONVERT(NEW.Cod_lote, CHAR(8)), CONVERT(@codigoFrasco, CHAR(2)));
+  SET NEW.Cod_frasco = CONCAT(NEW.Cod_lote, @codigoFrasco);
 END
 $
 
