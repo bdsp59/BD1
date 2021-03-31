@@ -249,7 +249,7 @@ CREATE PROCEDURE RECUPERAR_CODIGO(INOUT codigo INT)
 BEGIN
 	DECLARE identificador VARCHAR(2);
 	DECLARE var1 INT;
-	SET var1 = RAND()*100*RAND();
+	SET var1 = (SELECT COUNT(codigo) FROM FRASCO) + 1;
 	SET identificador = CONVERT(var1, CHAR(2));
 	SET	codigo = CAST(identificador as unsigned integer);
 END
