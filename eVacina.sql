@@ -278,7 +278,8 @@ FOR EACH ROW
 BEGIN
   SET @doses = (SELECT Doses_disponiveis FROM FRASCO WHERE Cod_frasco = NEW.Cod_frasco);
   IF (@doses < 1) THEN
-    SET NEW='Error:Não há mais doses nesse frasco.';
+    SET @MSG='Error:Não há mais doses nesse frasco.';
+    SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = @MSG;
   ELSE
     UPDATE FRASCO SET Doses_disponiveis=(Doses_disponiveis-1) WHERE Cod_frasco = NEW.Cod_frasco;
   END IF;
