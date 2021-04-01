@@ -156,7 +156,7 @@ CREATE PROCEDURE CARTAO_VACINA(IN cpf_cid CHAR(11))
 BEGIN
     SET @cidadao = (SELECT Cod_cid FROM CIDADAO WHERE CPF = cpf_cid);
     SELECT Nome AS Vacinas_tomadas FROM VACINA WHERE Cod_vac IN (SELECT Cod_vac FROM FRASCO WHERE Cod_frasco IN (SELECT Cod_frasco FROM VACINACAO WHERE Cod_cid = @cidadao));
-    SELECT Nome AS Vacinas_faltantes FROM VACINA WHERE Obrigatoria = true AND Cod_vac NOT IN (SELECT Cod_vac FROM FRASCO WHERE Cod_frasco IN (SELECT Cod_frasco FROM VACINACAO WHERE Cod_cid = @cidadao));
+    SELECT Nome AS Vacinas_faltantes FROM VACINA WHERE Cod_vac NOT IN (SELECT Cod_vac FROM FRASCO WHERE Cod_frasco IN (SELECT Cod_frasco FROM VACINACAO WHERE Cod_cid = @cidadao));
 END $
 
 DELIMITER ;
