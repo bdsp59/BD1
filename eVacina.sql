@@ -53,7 +53,7 @@ CREATE TABLE LOTE(
 
 CREATE TABLE FRASCO(
 	Cod_frasco VARCHAR(10) PRIMARY KEY,
-	Doses_disponiveis SMALLINT,
+	Doses_disponiveis SMALLINT NOT NULL,
 	Data_vencimento DATE NOT NULL,
 	Cod_lote VARCHAR(8) NOT NULL,
 	Cod_vac INT NOT NULL
@@ -147,12 +147,6 @@ ALTER TABLE VACINACAO ADD CONSTRAINT fk_Vacinacao_Funcionario FOREIGN KEY(Cod_fu
 ALTER TABLE VACINACAO ADD CONSTRAINT fk_Vacinacao_Cidadao FOREIGN KEY(Cod_cid) REFERENCES CIDADAO(Cod_cid)
 	ON DELETE RESTRICT ON UPDATE CASCADE;
 
-ALTER TABLE PRODUZ ADD CONSTRAINT fk_Prod_Produz FOREIGN KEY(Cod_prod) REFERENCES PRODUTORA(Cod_prod)
-  ON DELETE RESTRICT ON UPDATE CASCADE;
-ALTER TABLE PRODUZ ADD CONSTRAINT fk_Lote_Produz FOREIGN KEY(Cod_lote) REFERENCES PRODUTORA(Cod_lote)
-  ON DELETE RESTRICT ON UPDATE CASCADE;
-
-#Procedimentos e triggers
 
 DELIMITER $
 
@@ -210,7 +204,14 @@ BEGIN
     
     SET @data_venc = (SELECT Data_vencimento FROM FRASCO WHERE Cod_frasco = NEW.Cod_frasco);
     IF (@data_venc <= CURDATE() ) THEN
-        SET @MSG='Erro:Frasco nao esta dentro do prazo validade.';
+        SET @MSG='Erro:Frasco nao esta dentro do prazo de validade.';
+        SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = @MSG;
+    END IF;
+
+    SET @lote = (SELECT Cod_lote FROM FRASCO WHERE Cod_frasco = NEW.Cod_frasco )
+    SET @posto_lote = (SELECT Cod_posto FROM LOTE WHERE Cod_lote = @lote);
+    IF (@posto_lote != NEW.Cod_posto ) THEN
+        SET @MSG='Erro:O lote desse frasco nao esta nesse posto.';
         SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = @MSG;
     END IF;
 END $
