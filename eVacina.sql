@@ -52,7 +52,7 @@ CREATE TABLE LOTE(
 );
 
 CREATE TABLE FRASCO(
-    Cod_frasco VARCHAR(10) PRIMARY KEY,
+    Cod_frasco VARCHAR(11) PRIMARY KEY,
     Doses_disponiveis SMALLINT NOT NULL,
     Data_vencimento DATE NOT NULL,
     Cod_lote VARCHAR(8) NOT NULL,
@@ -180,7 +180,11 @@ FOR EACH ROW
 BEGIN
   SET @codigoFrasco = NEW.Cod_lote;
   CALL RECUPERAR_CODIGO(@codigoFrasco);
-  SET NEW.Cod_frasco = CONCAT(NEW.Cod_lote,@codigoFrasco);
+  IF (@codigoFrasco < 10) THEN
+    SET NEW.Cod_frasco = CONCAT(NEW.Cod_lote, "0", @codigoFrasco);
+  ELSE
+    SET NEW.Cod_frasco = CONCAT(NEW.Cod_lote, @codigoFrasco);
+  END IF
 END $
 
 DELIMITER ;
