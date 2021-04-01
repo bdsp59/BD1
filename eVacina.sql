@@ -52,7 +52,7 @@ CREATE TABLE LOTE(
 );
 
 CREATE TABLE FRASCO(
-    Cod_frasco VARCHAR(11) PRIMARY KEY,
+    Cod_frasco VARCHAR(10) PRIMARY KEY,
     Doses_disponiveis SMALLINT NOT NULL,
     Data_vencimento DATE NOT NULL,
     Cod_lote VARCHAR(8) NOT NULL,
@@ -91,7 +91,7 @@ CREATE TABLE CONTATO_PROD(
 CREATE TABLE VACINACAO(
     Cod_vcao INT PRIMARY KEY AUTO_INCREMENT,
     Data_aplicacao DATE NOT NULL,
-    Cod_frasco VARCHAR(11) NOT NULL,
+    Cod_frasco VARCHAR(10) NOT NULL,
     Cod_posto INT NOT NULL,
     Cod_func INT NOT NULL,
     Cod_cid INT NOT NULL
