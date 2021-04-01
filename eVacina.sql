@@ -184,7 +184,7 @@ BEGIN
     SET NEW.Cod_frasco = CONCAT(NEW.Cod_lote, "0", @codigoFrasco);
   ELSE
     SET NEW.Cod_frasco = CONCAT(NEW.Cod_lote, @codigoFrasco);
-  END IF
+  END IF;
 END $
 
 DELIMITER ;
