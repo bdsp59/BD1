@@ -389,8 +389,5 @@ SELECT * FROM LOTE WHERE Cod_lote = "AXTR6576";
 
 #Integridade referencial
 #(Cod, data, cod_posto, cod_prod) 
-<<<<<<< HEAD
 INSERT INTO LOTE VALUES ("AXTR9999", "2021-03-15", 1, 99);
-=======
 INSERT INTO LOTE VALUES ("AXTR9999", "2021-03-15", 1, 99);
->>>>>>> 621c1abe99be3e39b220e68566b4125b030b954d
